@@ -218,3 +218,137 @@ class Shape {
 	}
 }
 ```
+
+### 10/6(수) 도전문제 : 코딩감각 살리기 1
+#### 1.1부터 100까지 3의 배수와 7의 배수의 합 구하기
+```
+1부터 100까지의 숫자 중에서
+
+3의 배수와 7의 배수의 합을 구하시오.
+
+※ for문과 if문을 사용하세요.
+```
+```java
+import java.io.*;
+class Main {
+	public static void main(String[] args) throws Exception {
+		int total = 0;
+		for(int i=1; i<=100; i++) {
+			if(i%3==0 || i%7==0) {
+				total += i;
+			}
+		}
+		System.out.println(total);
+	}
+}
+```
+#### 2.1부터 1000까지 특정수의 배수의 개수
+```
+숫자를 하나 입력받으세요.
+
+1부터 1000까지의 숫자 중에서 입력받은 숫자의 배수가 몇개 있는지 구하세요.
+
+예를들어 2을 입력하면 500이 나오는데
+1부터 1000까지 2의 배수는 500개가 있음을 알 수 있다.
+```
+```java
+import java.io.*;
+import java.util.Scanner;
+class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner scn = new Scanner(System.in);
+		int input = scn.nextInt();
+		int cnt = 0;
+		for(int i=1; i<=1000; i++) {
+			if(i%input == 0) {
+				cnt ++;
+			}
+		}
+		System.out.println(cnt);
+	}
+}
+```
+
+#### 3.윤년/평년 구하는 함수 만들기
+```
+1.먼저 연도를 입력받으세요.
+
+2.다음 조건을 모두 만족하면 윤년입니다.
+  ① 연도를 4로 나누어 떨어져야 함
+  ② 연도를 100으로나누어 떨어지지 않거나
+      연도를 400으로 나누어 떨어져야 함
+
+3.윤년일 때 "윤년", 평년일 때 "평년"을 출력하세요.
+
+※ 두 함수(isYoon1, isYoon2)를 만들고 완성하세요.
+```
+```java
+import java.io.*;
+import java.util.Scanner;
+class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner scn = new Scanner(System.in);
+		int input = scn.nextInt();
+		
+		if(isYoon1(input) && isYoon2(input)) {
+			System.out.println("윤년");
+		} else {
+			System.out.println("평년");
+		}
+	}
+	static boolean isYoon1(int y) {
+		if(y % 4 == 0) return true;
+		else return false;
+	}
+	static boolean isYoon2(int y) {
+		if(y % 100 != 0 || y % 400 == 0) return true;
+		else return false;
+	}
+}
+```
+
+#### 4.삼각형 높이를 입력받아 *로 삼각형 그리기
+```
+1.삼각형 높이를 입력받습니다.
+
+2.입력받은 높이를 가진 삼각형을 출력하세요.
+
+예를들어 3을 입력받으면 높이가 3인 삼각형입니다.
+
+  *
+
+ ***
+
+*****
+
+4를 입력받으면 높이가 4인 삼각형입니다.
+
+   *
+
+  ***
+
+ *****
+
+*******
+
+규칙을 찾아내보세요 :)
+```
+```java
+import java.util.Scanner; 
+class Main { 
+	public static void main(String[] args) {
+		Scanner s=new Scanner(System.in); 
+		int n=s.nextInt();
+		
+		for(int i=0; i<n; i++) { 
+			for(int j=1; j<n-i; j++) { 
+				System.out.print(" "); 
+			} 
+			for(int k=0; k<i*2+1; k++) { 
+				System.out.print("*"); 
+			} 
+			System.out.println(); 
+		}
+	} 
+}
+```
