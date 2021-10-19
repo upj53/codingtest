@@ -352,3 +352,141 @@ class Main {
 	} 
 }
 ```
+### 10/8(금) 도전문제 : 코딩감각 살리기 2
+#### 1. 입력받은 세 숫자의 합과 평균 구하기
+```
+다음은 세 숫자를 입력받는 방법입니다.
+
+● int a = scn.nextInt();
+● int b = scn.nextInt();
+● int c = scn.nextInt();
+
+입력받은 세 숫자의 합과 평균을 구한 후 합과 평균을 구하세요.
+합은 정수로 출력하고,
+평균을 구한 후에는 소수점 둘째자리까지 출력하세요.
+
+※ (힌트) int 자료형을 double 자료형으로 변환하세요.
+```
+```java
+import java.io.*;
+import java.util.Scanner;
+class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner scn = new Scanner(System.in);
+		int a = scn.nextInt();
+		int b = scn.nextInt();
+		int c = scn.nextInt();
+		double total = (double) (a + b + c);
+		double average = total / 3;
+		
+		System.out.printf("%d %.2f", (a+b+c), average);
+	}
+}
+```
+
+#### 2. for문을 이용한 제곱승 구하기
+```
+두 숫자를 입력받아 for문을 이용해서 제곱승을 구하세요.
+
+예를들어 3과 2를 입력받았다면
+3의 2승의 값, 즉 9를 for문으로 계산해서 출력하면 됩니다.
+```
+```java
+import java.io.*;
+import java.util.Scanner;
+class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner scn = new Scanner(System.in);
+		int x = scn.nextInt();
+		int y = scn.nextInt();
+		int result = 1;
+		
+		for(int i=0; i<y; i++) {
+			result *= x;
+		}
+		
+		System.out.println(result);
+	}
+}
+```
+
+#### 3. 369게임
+```
+숫자를 입력받아 3의 배수는 X로 출력하세요.
+
+예를들어 10을 입력받았다면
+1 2 X 4 5 X 7 8 X 10
+이렇게 출력하세요.
+```
+```java
+import java.io.*;
+import java.util.Scanner;
+class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner scn = new Scanner(System.in);
+		int input = scn.nextInt();
+		
+		for(int i=1; i<=input; i++) {
+			if(i % 3 == 0) {
+				System.out.print("X");
+			} else {
+				System.out.print(i);
+			}
+			if(i != input) System.out.print(" ");
+		}
+	}
+}
+```
+
+#### 4. 덧셈/뺄셈/곱셈/나눗셈 함수 만들기
+```
+Number 클래스를 완성하여
+입력받은 두 숫자에 대해
+
+● 덧셈 : add(숫자1, 숫자2) → 정수 리턴
+● 뺄셈 : sub(숫자1, 숫자2) → 정수 리턴
+● 곱셈 : mul(숫자1, 숫자2) → 정수 리턴
+● 나누기의 몫 : div(숫자1, 숫자2) → 정수 리턴
+● 나누기의 나머지 : rest(숫자1, 숫자2) → 정수 리턴 
+
+를 구하는 함수를 완성하세요.
+```
+```java
+import java.io.*;
+import java.util.Scanner;
+class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner scn = new Scanner(System.in);
+		int a = scn.nextInt();
+		int b = scn.nextInt();
+		Number number = new Number();
+		
+		System.out.printf(
+			"%d %d %d %d %d",
+			number.add(a, b),
+			number.sub(a, b),
+			number.mul(a, b),
+			number.div(a, b),
+			number.rest(a, b)
+		);
+	}
+}
+
+class Number {
+	public int add(int a, int b) {
+		return (a+b);
+	}
+	public int sub(int a, int b) {
+		return (a-b);
+	}
+	public int mul(int a, int b) {
+		return (a*b);
+	}
+	public int div(int a, int b) {
+		return (a/b);
+	}
+	public int rest(int a, int b) {
+		return (a%b);
+	}
+}
+```
