@@ -86,7 +86,6 @@ String b = "67890";
 문자열 a, b를 숫자로 바꾼 뒤 사칙연산을 계산하는 코드를 완성하세요.
 ```
 ```java
-import java.io.*;
 class Main {
 	public static void main(String[] args) throws Exception {
 		String a = "12345";
@@ -112,7 +111,6 @@ class Main {
 ※조건 : for문과 if-else을 사용하여 완성하세요.
 ```
 ```java
-import java.io.*;
 class Main {
 	public static void main(String[] args) throws Exception {
 		System.out.println("");
@@ -145,7 +143,6 @@ class Main {
 ※ for문과 if-else문을 사용하세요.
 ```
 ```java
-import java.io.*;
 import java.util.Scanner;
 class Main {
 	public static void main(String[] args) throws Exception {
@@ -229,7 +226,6 @@ class Shape {
 ※ for문과 if문을 사용하세요.
 ```
 ```java
-import java.io.*;
 class Main {
 	public static void main(String[] args) throws Exception {
 		int total = 0;
@@ -252,7 +248,6 @@ class Main {
 1부터 1000까지 2의 배수는 500개가 있음을 알 수 있다.
 ```
 ```java
-import java.io.*;
 import java.util.Scanner;
 class Main {
 	public static void main(String[] args) throws Exception {
@@ -283,7 +278,6 @@ class Main {
 ※ 두 함수(isYoon1, isYoon2)를 만들고 완성하세요.
 ```
 ```java
-import java.io.*;
 import java.util.Scanner;
 class Main {
 	public static void main(String[] args) throws Exception {
@@ -368,7 +362,6 @@ class Main {
 ※ (힌트) int 자료형을 double 자료형으로 변환하세요.
 ```
 ```java
-import java.io.*;
 import java.util.Scanner;
 class Main {
 	public static void main(String[] args) throws Exception {
@@ -392,7 +385,6 @@ class Main {
 3의 2승의 값, 즉 9를 for문으로 계산해서 출력하면 됩니다.
 ```
 ```java
-import java.io.*;
 import java.util.Scanner;
 class Main {
 	public static void main(String[] args) throws Exception {
@@ -419,7 +411,6 @@ class Main {
 이렇게 출력하세요.
 ```
 ```java
-import java.io.*;
 import java.util.Scanner;
 class Main {
 	public static void main(String[] args) throws Exception {
@@ -452,7 +443,6 @@ Number 클래스를 완성하여
 를 구하는 함수를 완성하세요.
 ```
 ```java
-import java.io.*;
 import java.util.Scanner;
 class Main {
 	public static void main(String[] args) throws Exception {
@@ -638,7 +628,6 @@ class Hakjum {
   다이아몬드 위쪽 삼각형(▲)을 먼저 출력하고 아래쪽 삼각형(▼)을 출력하세요 :)
 ```
 ```java
-import java.io.*;
 import java.util.Scanner;
 class Main {
 	public static void main(String[] args) throws Exception {
