@@ -490,3 +490,183 @@ class Number {
 	}
 }
 ```
+
+### 10/18(월) 도전문제 : 코딩감각 살리기 3
+#### 1.성적에 따른 학점 출력하기 (일반함수사용)
+```
+국어, 영어, 수학 점수를 입력받고 평균을 구하여 리턴하는 함수를 만드세요.
+
+그 후 결과값에 따라 학점을 A, B, C, D, F 로 출력하세요.
+
+점수에 따른 학점분포는 다음과 같습니다.
+
+● 90 ＜ 점수 ≤ 100 → A
+● 80 ＜ 점수 ≤ 90 → B
+● 70 ＜ 점수 ≤ 80 → C
+● 60 ＜ 점수 ≤ 70 → D
+● 0 ≤ 점수 ≤ 60 → E
+
+※ if-else if문을 사용하여 학점을 출력하세요.
+```
+```java
+import java.util.Scanner;
+class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner scn = new Scanner(System.in);
+		int kor = scn.nextInt();
+		int eng = scn.nextInt();
+		int mat = scn.nextInt();
+		
+		System.out.println(
+			getAverage(kor, eng, mat)	
+		);
+	}
+	
+	static char getAverage(int k, int e, int m) {
+		double total = (double) (k+e+m);
+		double average = total / 3.0;
+		if(average > 90 && average <= 100) {
+			return 'A';
+		} else if(average > 80 && average <= 90) {
+			return 'B';
+		} else if(average > 70 && average <= 80) {
+			return 'C';
+		} else if(average > 60 && average <= 70) {
+			return 'D';
+		} else if(average > 0 && average <= 60) {
+			return 'F';
+		} else {
+			return '-';
+		}
+	}
+}
+```
+
+#### 2.성적에 따른 학점 출력하기 (클래스사용)
+```
+자바 4-1.문제를 클래스를 사용하여 재구성하세요.
+클래스의 특징은 다음과 같습니다.
+
+● 멤버변수
+  - kor 국어 (int)
+  - eng 영어 (int)
+  - mat 수학 (int)
+
+● 생성자
+  생성자에서 Scanner 로 국어 영어 수학점수를 받은후
+  멤버변수(kor, eng, mat)에 저장하세요.
+
+● 멤버함수 : getAverage(국어점수, 영어점수, 수학점수)
+  90 ＜ 점수 ≤ 100 → A
+  80 ＜ 점수 ≤ 90 → B
+  70 ＜ 점수 ≤ 80 → C
+  60 ＜ 점수 ≤ 70 → D
+  0 ≤ 점수 ≤ 60 → E
+
+● 멤버함수 : run()
+  run() 을 실행시키면 평균점수에 따라 학점을 출력하도록 하세요.
+  학점을 구할 때는 getAverage() 함수를 사용하세요.
+```
+```java
+import java.util.Scanner;
+class Main {
+	public static void main(String[] args) throws Exception {
+		Hakjum hakjum = new Hakjum();
+		hakjum.run();	
+	}
+}
+
+// 클래스를 완성하세요
+class Hakjum {
+	int kor;
+	int eng;
+	int mat;
+	public Hakjum() {
+		Scanner scn = new Scanner(System.in);
+		this.kor = scn.nextInt();
+		this.eng = scn.nextInt();
+		this.mat = scn.nextInt();
+		scn.close();
+	}
+	public void run() {
+		System.out.println(
+			this.getAverage()
+		);
+	}
+	public char getAverage() {
+		int k = this.kor;
+		int e = this.eng;
+		int m = this.mat;
+		double total = (double) (k+e+m);
+		double average = total / 3.0;
+		if(average > 90 && average <= 100) {
+			return 'A';
+		} else if(average > 80 && average <= 90) {
+			return 'B';
+		} else if(average > 70 && average <= 80) {
+			return 'C';
+		} else if(average > 60 && average <= 70) {
+			return 'D';
+		} else if(average > 0 && average <= 60) {
+			return 'F';
+		} else {
+			return '-';
+		}
+	}
+}
+```
+
+#### 3.너비를 입력받아 다이아몬드 모양(*) 출력하기
+```
+너비를 입력받아 다이아몬드 모양을 출력하세요.
+
+예를들어 너비가 3일 경우
+
+  *
+ **
+***
+ **
+  *
+
+이런 다이아몬드 모양이 출력됩니다.
+
+● printDimond함수를 완성하세요
+  리턴 없음
+  파라미터 w 너비 (정수)
+
+※ 힌트
+  다이아몬드 위쪽 삼각형(▲)을 먼저 출력하고 아래쪽 삼각형(▼)을 출력하세요 :)
+```
+```java
+import java.io.*;
+import java.util.Scanner;
+class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner scn = new Scanner(System.in);
+		int width = scn.nextInt();
+		printDimond(width);
+		scn.close();
+	}
+	// printDimond 함수를 완성하세요
+	static void printDimond(int w) {
+		for(int i=0; i<w; i++) {
+			for(int j=1; j<w-i; j++) {
+				System.out.print(" ");
+			}
+			for(int k=0; k<i*2+1; k++) {
+				System.out.print("*");
+			}
+			System.out.println("");
+		}
+		for(int i=w-2; i>=0; i--) {
+			for(int j=1; j<w-i; j++) {
+				System.out.print(" ");
+			}
+			for(int k=0; k<i*2+1; k++) {
+				System.out.print("*");
+			}
+			System.out.println("");
+		}
+	}
+}
+```
