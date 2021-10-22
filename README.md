@@ -659,3 +659,131 @@ class Main {
 	}
 }
 ```
+### 10/19(월) 도전문제 : 객체지향(OOP)과 친해지기 1
+#### 1. 객체지향 생성자 만들기
+```
+클래스에서 생성자는 객체를 new 로 생성한 동시에 실행하는 함수를 말합니다.
+
+생성자 함수의 파라미터는 아무것도 없을 수 있고,
+상황에 따라 여러개의 파라미터를 넘겨받을 수 있습니다.
+
+다음 Person 클래스에서 이름과 생년월일 파라미터를 넘겨주는 클래스를 작성하세요.
+
+(예) Person 생성자
+
+● 이름 : 김성일
+● 생년월일 : 2021년 7월 12일
+
+(출력)
+
+김성일(2021-7-12)
+
+위와 같이 출력하는 생성자 함수를 완성하세요.
+```
+```java
+class Main {
+	public static void main(String[] args) throws Exception {
+		Person person = new Person("김성일", 2021, 7, 12);
+		System.out.printf(
+			"%s(%d-%d-%d)",
+			person.name, person.year, person.month, person.day
+		);
+	}
+}
+
+class Person {
+	// 생성자 함수를 완성하세요
+	String name;
+	int year;
+	int month;
+	int day;
+	public Person(String n, int y, int m, int d) {
+		this.name = n;
+		this.year = y;
+		this.month = m;
+		this.day = d;
+	}
+}
+```
+
+#### 2. 객체지향 생성자 오버로딩
+```
+함수 오버로딩은 함수 이름은 동일하지만 파라미터가 다를 때 사용할 수 있습니다.
+
+예를들어
+
+● 파라미터 : 없음
+● 파라미터 : "이름"
+● 파라미터 : "이름", "나이"
+● 파라미터 : "이름", "태어난 해", "태어난 달", "태어난 날"
+
+다음과 같은 4종류의 생성자를 이름은 같지만 파라미터를 다르게 해서 만들 수 있습니다.
+이는 생성자 뿐 아니라 객체에 사용하는 모든 함수에도 동일하게 적용됩니다.
+
+클래스 Person에 위의 의 4가지 종류의 생성자를 만든 후,
+각 생성자에서 해당 정보를 출력하는 기능을 구현하세요.
+```
+```java
+class Main {
+	public static void main(String[] args) throws Exception {
+		Person person1 = new Person();
+		Person person2 = new Person("둘리");
+		Person person3 = new Person("둘리", 39);
+		Person person4 = new Person("둘리", 1983, 4, 22);
+	}
+}
+
+class Person {
+	// 생성자 함수를 완성하세요
+	public Person() {
+		System.out.println("생성자");
+	}
+	public Person(String name) {
+		System.out.printf(
+		"%s\n",
+		name
+		);
+	}
+	public Person(String name, int age) {
+		System.out.printf(
+		"%s(%d세)\n",
+		name, age
+		);
+	}
+	public Person(String name, int year, int month, int day) {
+		System.out.printf(
+		"%s(%d-%d-%d)\n",
+		name, year, month, day
+		);
+	}
+}
+```
+
+#### 3.try-catch문으로 에러 핸들링하기
+```
+어떤 숫자를 0으로 나눌 수 없습니다.
+try-catch문을 사용해서 0으로 나눌 경우에 프로그램이 에러로 종료되지 않고
+"ERROR" 메시지를 출력하도록 하세요.
+
+에러가 안날 경우는 a를 b 로 나누기의 몫과 나머지를 출력하세요.
+
+예를들어 10을 3으로 나누면 몫은 3이고 나머지는 1입니다
+하지만 10을 0으로 나누면 ERROR 를 출력합니다.
+```
+```java
+import java.io.*;
+import java.util.Scanner;
+class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner scn = new Scanner(System.in);
+		int a = scn.nextInt();
+		int b = scn.nextInt();
+		try {
+			System.out.printf("%d %d", a/b, a%b);
+		} catch(Exception e) {
+			System.out.println("ERROR");
+		}
+		scn.close();
+	}
+}
+```
