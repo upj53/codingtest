@@ -787,3 +787,195 @@ class Main {
 	}
 }
 ```
+### 10/26(화) 도전문제 : 객체지향(OOP)과 친해지기 2
+#### 1. 객체지향 함수 오버로딩 (출력함수)
+```
+print 함수를 함수 오버로딩을 사용하여 만들려고 합니다.
+
+다음과 같은 파라미터의 종류가 있을 때 print() 함수를 객체지향 클래스로 구성하세요.
+
+1.파라미터 없음
+2.파라미터 1개 : 정수(int)
+3.파라미터 1개 : 문자열(String)
+4.파라미터 2개 : 실수, 소수점자리수(double, int)
+   → 실수를 소수점 몇자리까지 표기하라는 말입니다.
+
+위와 같은 특성을 갖는 print() 함수를 PrintOOP 클래스에 작성하세요.
+```
+```java
+class Main {
+	public static void main(String[] args) throws Exception {
+		PrintOOP prt1 = new PrintOOP();
+		PrintOOP prt2 = new PrintOOP();
+		PrintOOP prt3 = new PrintOOP();
+    PrintOOP prt4 = new PrintOOP();
+    PrintOOP prt5 = new PrintOOP();
+    
+    prt1.print();
+    prt2.print(7);
+    prt3.print("자바생성자");
+    prt4.print(3.141592, 2);
+    prt5.print(3.141592, 5);
+	}
+}
+
+class PrintOOP {
+  public void print() {
+    System.out.printf("print함수\n");
+  }
+  public void print(int a) {
+    System.out.printf("정수:%d\n", a);
+  }
+  public void print(String b) {
+    System.out.printf("문자열:%s\n", b);
+  }
+  public void print(double c, int d) {
+    String str = "실수:%."+d+"f\n";
+    System.out.printf(str, c);
+  }
+}
+```
+
+#### 2. 객체지향 상속 1
+```
+LoL(리그 오브 레전드) 게임의 캐릭터를 자바 클래스를 사용하여 설계하려고 합니다.
+
+다음과 같이 챔피온을 구성하려고 할 때 어떻게 클래스를 구성하면 될까요?
+
+● 암살자 : 녹턴
+● 전사  : 가렌
+● 마법사 : 아리
+● 원거리딜러 : 카이사
+● 서포터 : 라칸
+● 탱커 : 자크
+
+객체지향의 상속을 사용해서 LoL 클래스와 Champion 클래스를 완성해보세요.
+```
+```java
+class Main {
+	public static void main(String[] args) throws Exception {
+		Champion chmp1 = new Champion("녹턴", "암살자", 9, 3, 3);
+		Champion chmp2 = new Champion("가렌", "전사", 6, 2, 6);
+		Champion chmp3 = new Champion("아리", "마법사", 8, 4, 7);
+		Champion chmp4 = new Champion("카이사", "원거리딜러", 8, 4, 4);
+		Champion chmp5 = new Champion("라칸", "서포터", 9, 0, 5);
+		Champion chmp6 = new Champion("자크", "탱커", 1, 10, 2);
+		
+		chmp1.print();
+		chmp2.print();
+		chmp3.print();
+		chmp4.print();
+		chmp5.print();
+		chmp6.print();
+	}
+}
+
+class LoL {
+	String name;
+	public LoL(String _name) {
+		this.name = _name;
+	}
+}
+
+class Champion extends LoL {
+	String role;
+	int K;
+	int D;
+	int A;
+	public Champion(String _name, String _role, int _k, int _d, int _a) {
+		super(_name);
+		this.role = _role;
+		this.K = _k;
+		this.D = _d;
+		this.A = _a;
+	}
+	public void print() {
+		System.out.printf(
+			"%s(%s)%d/%d/%d\n",
+			super.name, this.role, this.K, this.D, this.A
+		);
+	}
+}
+```
+
+#### 3. 객체지향 상속 2 (enum 활용)
+```
+"자바 6-1. 객체지향 상속 1"을 통해 만들어진 객체에서 챔피온의 역할을 문자열(String)을 사용하여 구성했습니다.
+
+해당 클래스를 enum을 활용하여 업그레이드 해보겠습니다.
+enum 클래스는 열거체를 나타낼 때 사용하는 방법으로 코드의 가독성을 높여주는 편리한 기능입니다.
+
+(enum 사용법)
+enum  열거체이름  {상수1이름,  상수2이름,  ...  }
+
+(enum 예제)
+enum  Weekday  {Sun, Mon, Tue, Wed, Thu, Fri, Sat}
+
+Weekday.Sun
+Weekday.Mon
+Weekday.Tue
+...
+
+enum을 활용하여 챔피온의 역할을 다음과 같이 지정하고,
+LoL 클래스에 CS속성을 추가하여 클래스를 완성하세요.
+
+역할(Role)
+● 암살자 : Slayer
+● 전사 : Fighter
+● 마법사 : Mage
+● 원거리딜러 : Marksman
+● 서포터 : Controller
+● 탱커 : Tank
+```
+```java
+enum Role {
+	Slayer, Fighter, Mage, Marksman, Controller, Tank
+}
+
+class Main {
+	public static void main(String[] args) throws Exception {
+		Champion chmp1 = new Champion("녹턴", Role.Slayer, 9, 3, 3, 53);
+		Champion chmp2 = new Champion("가렌", Role.Fighter, 6, 2, 6, 43);
+		Champion chmp3 = new Champion("아리", Role.Mage, 8, 4, 7, 92);
+		Champion chmp4 = new Champion("카이사", Role.Marksman, 8, 4, 4, 68);
+		Champion chmp5 = new Champion("라칸", Role.Controller, 9, 0, 5, 35);
+		Champion chmp6 = new Champion("자크", Role.Tank, 1, 10, 2, 29);
+		
+		chmp1.print();
+		chmp2.print();
+		chmp3.print();
+		chmp4.print();
+		chmp5.print();
+		chmp6.print();
+	}
+}
+
+class LoL {
+	String name;
+	int CS;
+	public LoL(String _name, int _cs) {
+		this.name = _name;
+		this.CS = _cs;
+	}
+}
+
+class Champion extends LoL {
+	Role role;
+	int K;
+	int D;
+	int A;
+	public Champion(String _name, Role _role, int _k, int _d, int _a, int _cs) {
+		super(_name, _cs);
+		this.role = _role;
+		this.K = _k;
+		this.D = _d;
+		this.A = _a;
+	}
+	public void print() {
+		System.out.printf(
+			"%s(%s)[%d]%d/%d/%d\n",
+			super.name, this.role, super.CS, this.K, this.D, this.A
+		);
+	}
+}
+```
