@@ -979,3 +979,258 @@ class Champion extends LoL {
 	}
 }
 ```
+
+### 11/2(화) 도전문제 : 객체지향(OOP)과 친해지기 3
+#### 1.추상 클래스 (스타크래프트 유닛 생성하기)
+```
+추상 클래스란? [교안 PPT 68페이지를 참고하세요]
+
+구체적으로 구현하지 않은 클래스
+상속받은 클래스에서 구체적으로 구현해야할 의무가 있다
+단, 추상 클래스는 구현하지 않는다
+문제) 스타크래프트 종족별 일꾼 만들기
+
+Worker(일꾼) 클래스를 추상클래스로 만드세요
+-일꾼은 미네랄을 캐고(getMineral)
+-가스를 채취합니다(getGas)
+-각 함수를 구현하고 일을 시켜보세요(work)
+각 종족별로 Worker(일꾼) 클래스를 상속받은 클래스를 만드세요
+ZergWorker(저그)
+TerranWorker(테란)
+ProtossWorker(프로토스)
+메인함수의 클래스에서 저그, 테란, 프로토스의 일꾼을 생성하세요
+```
+```java
+import java.util.Scanner;
+class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner scn = new Scanner(System.in);
+		ZergWorker zergWorker = new ZergWorker();
+		TerranWorker terranWorker = new TerranWorker();
+		ProtossWorker protossWorker = new ProtossWorker();
+		
+		zergWorker.work();
+		terranWorker.work();
+		protossWorker.work();
+	}
+}
+
+abstract class Worker {
+	public abstract void getMineral();
+	public abstract void getGas();
+	public abstract void work();
+}
+
+class ZergWorker extends Worker {
+	@Override
+	public void getMineral() {
+		System.out.println("저그:미네랄을 채취합니다");
+	}
+	@Override
+	public void getGas() {
+		System.out.println("저그:가스를 채취합니다");
+	}
+	@Override
+	public void work() {
+		this.getMineral();
+		this.getGas();
+	}
+}
+
+class TerranWorker extends Worker {
+	@Override
+	public void getMineral() {
+		System.out.println("테란:미네랄을 채취합니다");
+	}
+	@Override
+	public void getGas() {
+		System.out.println("테란:가스를 채취합니다");
+	}
+	@Override
+	public void work() {
+		this.getMineral();
+		this.getGas();
+	}
+}
+
+class ProtossWorker extends Worker {
+	@Override
+	public void getMineral() {
+		System.out.println("프로토스:미네랄을 채취합니다");
+	}
+	@Override
+	public void getGas() {
+		System.out.println("프로토스:가스를 채취합니다");
+	}
+	@Override
+	public void work() {
+		this.getMineral();
+		this.getGas();
+	}
+}
+```
+
+#### 2.인터페이스 (스타크래프트 유닛 설계하기)
+```
+인터페이스란 [교안 PPT 76페이지 참고]
+
+클래스 혹은 프로그램이 제공하는 기능을 명시적으로 선언한다
+추상 메서드와 상수로만 이루어져 있다
+구현 코드가 없기 때문에 인스턴스를 생성할 수 없다
+스타크래프트 게임은 세 종족(저그, 테란, 프로토스)이 유닛을 생산하여 전투하는 전략 시뮬레이션 게임입니다. 자바의 인터페이스를 활용하여 아래 조건에 맞게 유닛을 설계하세요.
+
+모든 종족의 유닛은 Unit 클래스를 구현해야 합니다.
+-create() 함수 : 생성됐을 때 호출되는 함수
+-remove() 함수 :  소멸 됐을 때 호출되는 함수
+공격유닛(AttackUnit)은 각 종족의 기본 공격 유닛을 설계할 때 사용합니다. 공격유닛에는 저그는 히드라, 테란은 마린, 프로토스는 드래곤이 있습니다.
+-max_energy  상수 : 공격유닛은 최대 에너지값(30)이 있습니다.
+-attack() 함수 : 공격을 구현하는 함수입니다.
+-getDemage(int dmg) : 공격을 받았을 때 dmg 만큼의 데미지를 입으며 에너지 에서 값이 깎입니다.
+각 종족의 공격유닛에 대한 클래스를 구현하세요. 모든 공격유닛은 Unit, AttackUnit을 구현해야 합니다.
+-Hydra (저그)
+-Marin (테란)
+-Dragon (프로토스)
+Hydra, Marin, Dragon 클래스는 다음의 특징을 같습니다.
+-isAlive 불린값 : 살아 있는지 죽어 있는지 체크
+-energy 정수 : 남아 있는 에너지 체크
+-공격을 받아서 에너지가 0보다 작아지면 자동소멸됩니다.
+```
+```java
+class Main {
+	public static void main(String[] args) throws Exception {
+		Hydra hydra = new Hydra();
+		Marin marin = new Marin();
+		Dragon dragon = new Dragon();
+		
+		// 히드라 유닛
+		hydra.create();
+		hydra.attack();
+		hydra.getDemage(10);
+		hydra.getDemage(10);
+		hydra.getDemage(10);
+		hydra.getDemage(10);
+		hydra.getDemage(10);
+		
+		// 마린 유닛
+		marin.create();
+		marin.attack();
+		marin.getDemage(25);
+		marin.getDemage(25);
+		marin.getDemage(25);
+		
+		// 드래곤 유닛
+		dragon.create();
+		dragon.attack();
+		dragon.getDemage(5);
+		dragon.getDemage(5);
+		dragon.getDemage(5);
+		dragon.getDemage(5);
+		dragon.getDemage(5);
+	}
+}
+
+interface Unit {
+	void create();
+	void remove();
+}
+
+interface AttackUnit {
+	int max_energy = 30;
+	void attack();
+	void getDemage(int dmg);
+}
+
+class Hydra implements Unit, AttackUnit {
+	boolean isAlive = false;
+	int energy = 0;
+	
+	@Override
+	public void create() {
+		isAlive = true;
+		energy = max_energy;
+		System.out.println("히드라:생성되었습니다.에너지:"+energy);
+	}
+	@Override
+	public void remove() {
+		isAlive = false;
+		System.out.println("히드라:소멸되었습니다");
+	}
+	@Override
+	public void attack() {
+		System.out.println("히드라:공격합니다");
+	}
+	@Override
+	public void getDemage(int dmg) {
+		if(isAlive && energy > 0) {
+			energy -= dmg;
+			System.out.println("히드라:공격받았습니다.에너지:"+energy);
+			if(energy <= 0) {
+				this.remove();
+			}
+		}
+	}
+}
+
+class Marin implements Unit, AttackUnit {
+	boolean isAlive = false;
+	int energy = 0;
+	
+	@Override
+	public void create() {
+		isAlive = true;
+		energy = max_energy;
+		System.out.println("마린:생성되었습니다.에너지:"+energy);
+	}
+	@Override
+	public void remove() {
+		isAlive = false;
+		System.out.println("마린:소멸되었습니다");
+	}
+	@Override
+	public void attack() {
+		System.out.println("마린:공격합니다");
+	}
+	@Override
+	public void getDemage(int dmg) {
+		if(isAlive && energy > 0) {
+			energy -= dmg;
+			System.out.println("마린:공격받았습니다.에너지:"+energy);
+			if(energy <= 0) {
+				this.remove();
+			}
+		}
+	}
+}
+
+class Dragon implements Unit, AttackUnit {
+	boolean isAlive = false;
+	int energy = 0;
+	
+	@Override
+	public void create() {
+		isAlive = true;
+		energy = max_energy;
+		System.out.println("드래곤:생성되었습니다.에너지:"+energy);
+	}
+	@Override
+	public void remove() {
+		this.isAlive = false;
+		this.energy = 0;
+		System.out.println("드래곤:소멸되었습니다");
+	}
+	@Override
+	public void attack() {
+		System.out.println("드래곤:공격합니다");
+	}
+	@Override
+	public void getDemage(int dmg) {
+		if(isAlive && energy > 0) {
+			energy -= dmg;
+			System.out.println("드래곤:공격받았습니다.에너지:"+energy);
+			if(energy <= 0) {
+				this.remove();
+			}
+		}
+	}
+}
+```
