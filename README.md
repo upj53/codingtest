@@ -1240,3 +1240,112 @@ class Dragon implements Unit, AttackUnit {
 	}
 }
 ```
+### 11/2(화) 도전문제 : 
+#### 1.ArrayList 활용 (오름/내림차순 정렬)
+```
+문자열을 입력받아 ArrayList 에 저장하세요.
+
+그리고 문자열을 오름차순으로 정렬하고, 내림차순으로 정렬하세요.
+
+입력 문자열 예시
+korean china america
+
+출력 결과 예시
+오름차순
+america
+china
+korean
+내림차순
+korean
+china
+america
+
+위와 같이 문자열을 입력했을 때
+오름차순, 내림차순으로 정렬 후 출력하세요. (실행 화면 예시 참고)
+```
+```java
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
+
+class Main {
+	public static void main(String[] args) throws Exception {
+		Scanner scn = new Scanner(System.in);
+		String input = scn.nextLine();
+		
+		ArrayList<String> arrayList = new ArrayList<>();
+		String arr[] = input.split(" ");
+		for(int i=0; i<arr.length; i++) {
+			arrayList.add(arr[i]);
+		}
+		
+		System.out.println("오름차순");
+		Collections.sort(arrayList);
+		for(String str : arrayList) {
+			System.out.println(str);
+		}
+		
+		System.out.println("내림차순");
+		Collections.sort(arrayList, Collections.reverseOrder());
+		for(String str : arrayList) {
+			System.out.println(str);
+		}
+	}
+}
+```
+
+#### 2.ArrayList와 객체 제네릭
+```
+스타크래프트 유닛을 클래스를 만들고 아래와 같이 객체를 생성한 후 출력하세요.
+
+※객체 클래스를 만들고 ArrayList 제네릭 형태로 리스트를 생성한 후 for문으로 출력하세요. (객체용 for문을 활용하세요)
+(종족)   (역할)  (이름)
+group	 type	 name
+저그     공격    저글링
+저그     공격    히드라
+저그     수송    오버로드
+테란     공격     마린
+테란     치료     매딕
+테란     공격    골리앗
+프로토스  공격   드래곤
+프로토스  마법   하이템플러
+프로토스  수송    셔틀
+```
+```java
+import java.util.ArrayList;
+class Main {
+	public static void main(String[] args) throws Exception {
+		ArrayList<Unit> arraylist = new ArrayList<>();
+		arraylist.add(new Unit("저그", "공격", "저글링"));
+		arraylist.add(new Unit("저그", "공격", "히드라"));
+		arraylist.add(new Unit("저그", "수송", "오버로드"));
+		arraylist.add(new Unit("테란", "공격", "마린"));
+		arraylist.add(new Unit("테란", "치료", "매딕"));
+		arraylist.add(new Unit("테란", "공격", "골리앗"));
+		arraylist.add(new Unit("프로토스", "공격", "드래곤"));
+		arraylist.add(new Unit("프로토스", "마법", "하이템플러"));
+		arraylist.add(new Unit("프로토스", "수송", "셔틀"));
+		
+		for(Unit u : arraylist) {
+			u.print();
+		}
+	}
+}
+
+class Unit {
+	String group;
+	String type;
+	String name;
+	public Unit(String g, String t, String n) {
+		group = g;
+		type = t;
+		name =n;
+	}
+	public void print() {
+		System.out.printf(
+		"%s/%s/%s\n",
+		group, type, name
+		);
+	}
+}
+```
